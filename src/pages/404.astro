@@ -1,0 +1,50 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { AstroSeo } from "@astrolib/seo";
+import { siteConfig } from "@/config/site";
+const canonical = `${siteConfig.url}${Astro.url.pathname || "/"}`;
+---
+
+<AstroSeo
+  title={`404 | ${siteConfig.name}`}
+  description="Page not found."
+  canonical={canonical}
+  noindex={true}
+  nofollow={true}
+  openGraph={{
+    url: canonical,
+    title: `404 | ${siteConfig.name}`,
+    description: "Page not found.",
+    site_name: siteConfig.name,
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} Open Graph image`,
+        type: "image/jpeg",
+      },
+    ],
+  }}
+  twitter={{
+    cardType: "summary_large_image",
+    site: siteConfig.author.twitter,
+    handle: siteConfig.author.twitter,
+  }}
+/>
+<BaseLayout showNavigation={false} showFooter={false}>
+  <section>
+    <Wrapper variant="standard">
+      <Text tag="h1" variant="textLG"> 404 </Text>
+      <Button isLink={true} href="/" size="xs" variant="muted">
+        Go back gome
+      </Button>
+    </Wrapper>
+  </section>
+</BaseLayout>

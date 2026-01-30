@@ -1,0 +1,30 @@
+---
+import { cn } from '@/utils/cn';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'div'> {
+  align?: 'start' | 'center' | 'end';
+}
+
+const {
+  align = 'end',
+  class: className,
+  ...props
+} = Astro.props;
+
+const alignStyles = {
+  start: 'left-0',
+  center: 'left-1/2 -translate-x-1/2',
+  end: 'right-0',
+};
+
+const classes = cn(
+  'absolute top-full mt-2 z-50 min-w-[8rem] overflow-hidden rounded-lg border bg-popover p-1 text-popover-foreground shadow-md',
+  alignStyles[align],
+  className
+);
+---
+
+<div class={classes} data-dropdown-content role="menu" hidden {...props}>
+  <slot />
+</div>

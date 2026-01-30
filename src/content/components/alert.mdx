@@ -1,0 +1,170 @@
+---
+title: Alert
+description: Contextual messages for user feedback.
+tagline: Display important messages
+category: feedback
+status: stable
+order: 2
+---
+
+import ComponentPreview from "@/components/docs/ComponentPreview.astro";
+import CodeBlock from "@/components/docs/CodeBlock.astro";
+import Prose from "@/components/docs/Prose.astro";
+import Alert from "@/components/ui/alert/Alert.astro";
+import AlertTitle from "@/components/ui/alert/AlertTitle.astro";
+import AlertDescription from "@/components/ui/alert/AlertDescription.astro";
+import Info from "@lucide/astro/icons/info";
+import CircleCheck from "@lucide/astro/icons/circle-check";
+import TriangleAlert from "@lucide/astro/icons/triangle-alert";
+import CircleX from "@lucide/astro/icons/circle-x";
+
+<ComponentPreview code={`<Alert>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+</Alert>`}>
+  <Alert>
+    <AlertTitle>Heads up!</AlertTitle>
+    <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+  </Alert>
+</ComponentPreview>
+
+<div class="space-y-4">
+<Prose>
+### Installation
+</Prose>
+
+<ComponentPreview
+  component="alert"
+  manual={`import Alert from '@/components/ui/alert/Alert.astro';
+import AlertTitle from '@/components/ui/alert/AlertTitle.astro';
+import AlertDescription from '@/components/ui/alert/AlertDescription.astro';`}
+/>
+</div>
+
+<div class="space-y-4">
+<Prose>
+### Usage
+</Prose>
+
+<CodeBlock code={`import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+} from "@/components/ui/alert"`} lang="astro" />
+
+<CodeBlock code={`<Alert>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components to your app using the CLI.
+  </AlertDescription>
+</Alert>`} lang="astro" />
+</div>
+
+<div class="space-y-8">
+<Prose>
+### Examples
+</Prose>
+
+<div class="space-y-4">
+<Prose>
+#### Destructive
+</Prose>
+
+<ComponentPreview code={`<Alert variant="destructive">
+  <CircleX class="size-4" />
+  <AlertTitle>Error</AlertTitle>
+  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+</Alert>`}>
+  <Alert variant="destructive">
+    <CircleX class="size-4" />
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+  </Alert>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Success
+</Prose>
+
+<ComponentPreview code={`<Alert variant="success">
+  <CircleCheck class="size-4" />
+  <AlertTitle>Success</AlertTitle>
+  <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+</Alert>`}>
+  <Alert variant="success">
+    <CircleCheck class="size-4" />
+    <AlertTitle>Success</AlertTitle>
+    <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+  </Alert>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Warning
+</Prose>
+
+<ComponentPreview code={`<Alert variant="warning">
+  <TriangleAlert class="size-4" />
+  <AlertTitle>Warning</AlertTitle>
+  <AlertDescription>Your account is about to expire.</AlertDescription>
+</Alert>`}>
+  <Alert variant="warning">
+    <TriangleAlert class="size-4" />
+    <AlertTitle>Warning</AlertTitle>
+    <AlertDescription>Your account is about to expire.</AlertDescription>
+  </Alert>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Info
+</Prose>
+
+<ComponentPreview code={`<Alert variant="info">
+  <Info class="size-4" />
+  <AlertTitle>Info</AlertTitle>
+  <AlertDescription>A new version is available for download.</AlertDescription>
+</Alert>`}>
+  <Alert variant="info">
+    <Info class="size-4" />
+    <AlertTitle>Info</AlertTitle>
+    <AlertDescription>A new version is available for download.</AlertDescription>
+  </Alert>
+</ComponentPreview>
+</div>
+</div>
+
+<Prose>
+### Anatomy
+
+- `Alert` - The root container with variant styling
+- `AlertTitle` - The heading text
+- `AlertDescription` - The descriptive content
+</Prose>
+
+<Prose>
+### Props
+
+#### Alert
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | default \| destructive \| success \| warning \| info | default | Visual style variant |
+| class | string | - | Additional CSS classes |
+
+#### AlertTitle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | string | - | Additional CSS classes |
+
+#### AlertDescription
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | string | - | Additional CSS classes |
+</Prose>

@@ -1,0 +1,149 @@
+---
+title: Slider
+description: An input where the user selects a value from within a given range.
+tagline: Range value selection
+category: form
+status: stable
+order: 23
+---
+
+import ComponentPreview from "@/components/docs/ComponentPreview.astro";
+import CodeBlock from "@/components/docs/CodeBlock.astro";
+import Prose from "@/components/docs/Prose.astro";
+import Slider from "@/components/ui/slider/Slider.astro";
+
+<ComponentPreview code={`<Slider defaultValue={[33]} max={100} step={1} />`}>
+  <div class="w-full max-w-sm">
+    <Slider defaultValue={[33]} max={100} step={1} />
+  </div>
+</ComponentPreview>
+
+<div class="space-y-4">
+<Prose>
+### Installation
+</Prose>
+
+<ComponentPreview
+  component="slider"
+  manual={`import Slider from '@/components/ui/slider/Slider.astro';`}
+/>
+</div>
+
+<div class="space-y-4">
+<Prose>
+### Usage
+</Prose>
+
+<CodeBlock code={`import { Slider } from "@/components/ui"`} lang="astro" />
+
+<CodeBlock code={`<Slider defaultValue={[33]} max={100} step={1} />`} lang="astro" />
+</div>
+
+<div class="space-y-8">
+<Prose>
+### Examples
+</Prose>
+
+<div class="space-y-4">
+<Prose>
+#### Range
+</Prose>
+
+<ComponentPreview code={`<Slider defaultValue={[25, 75]} max={100} step={1} />`}>
+  <div class="w-full max-w-sm">
+    <Slider defaultValue={[25, 75]} max={100} step={1} />
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Multiple thumbs
+</Prose>
+
+<ComponentPreview code={`<Slider defaultValue={[10, 50, 90]} max={100} step={1} />`}>
+  <div class="w-full max-w-sm">
+    <Slider defaultValue={[10, 50, 90]} max={100} step={1} />
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Step values
+</Prose>
+
+<ComponentPreview code={`<Slider defaultValue={[50]} max={100} step={10} />`}>
+  <div class="w-full max-w-sm">
+    <Slider defaultValue={[50]} max={100} step={10} />
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Vertical
+</Prose>
+
+<ComponentPreview code={`<Slider defaultValue={[50]} orientation="vertical" />`}>
+  <div class="h-48">
+    <Slider defaultValue={[50]} orientation="vertical" />
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Disabled
+</Prose>
+
+<ComponentPreview code={`<Slider defaultValue={[50]} disabled />`}>
+  <div class="w-full max-w-sm">
+    <Slider defaultValue={[50]} disabled />
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### With label
+</Prose>
+
+<ComponentPreview code={`<div class="space-y-2">
+  <div class="flex justify-between">
+    <label class="text-sm font-medium">Volume</label>
+    <span class="text-sm text-muted-foreground">50%</span>
+  </div>
+  <Slider defaultValue={[50]} />
+</div>`}>
+  <div class="w-full max-w-sm space-y-2">
+    <div class="flex justify-between">
+      <label class="text-sm font-medium">Volume</label>
+      <span class="text-sm text-muted-foreground">50%</span>
+    </div>
+    <Slider defaultValue={[50]} />
+  </div>
+</ComponentPreview>
+</div>
+</div>
+
+<Prose>
+### Anatomy
+
+- `Slider` - The main slider container with track, range, and thumb(s)
+</Prose>
+
+<Prose>
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | number[] | [0] | Initial value(s). Use array with multiple values for range slider |
+| min | number | 0 | Minimum value |
+| max | number | 100 | Maximum value |
+| step | number | 1 | Step increment |
+| disabled | boolean | false | Disables the slider |
+| orientation | "horizontal" \| "vertical" | "horizontal" | Slider orientation |
+| name | string | - | Form input name |
+| class | string | - | Additional CSS classes |
+</Prose>

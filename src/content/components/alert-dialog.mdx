@@ -1,0 +1,196 @@
+---
+title: Alert Dialog
+description: A modal dialog that interrupts the user with important content and expects a response.
+tagline: Confirmation dialogs
+category: feedback
+status: stable
+order: 2
+---
+
+import ComponentPreview from "@/components/docs/ComponentPreview.astro";
+import CodeBlock from "@/components/docs/CodeBlock.astro";
+import Prose from "@/components/docs/Prose.astro";
+import AlertDialog from "@/components/ui/alert-dialog/AlertDialog.astro";
+import AlertDialogTrigger from "@/components/ui/alert-dialog/AlertDialogTrigger.astro";
+import AlertDialogOverlay from "@/components/ui/alert-dialog/AlertDialogOverlay.astro";
+import AlertDialogContent from "@/components/ui/alert-dialog/AlertDialogContent.astro";
+import AlertDialogHeader from "@/components/ui/alert-dialog/AlertDialogHeader.astro";
+import AlertDialogTitle from "@/components/ui/alert-dialog/AlertDialogTitle.astro";
+import AlertDialogDescription from "@/components/ui/alert-dialog/AlertDialogDescription.astro";
+import AlertDialogFooter from "@/components/ui/alert-dialog/AlertDialogFooter.astro";
+import AlertDialogAction from "@/components/ui/alert-dialog/AlertDialogAction.astro";
+import AlertDialogCancel from "@/components/ui/alert-dialog/AlertDialogCancel.astro";
+import Button from "@/components/ui/button/Button.astro";
+
+<ComponentPreview code={`<AlertDialog>
+  <AlertDialogTrigger>
+    <Button variant="outline">Delete Account</Button>
+  </AlertDialogTrigger>
+  <AlertDialogOverlay />
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+  <AlertDialog>
+    <AlertDialogTrigger>
+      <Button variant="outline">Delete Account</Button>
+    </AlertDialogTrigger>
+    <AlertDialogOverlay />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentPreview>
+
+<div class="space-y-4">
+<Prose>
+### Installation
+</Prose>
+
+<ComponentPreview
+  component="alert-dialog"
+  manual={`import AlertDialog from '@/components/ui/alert-dialog/AlertDialog.astro';
+import AlertDialogTrigger from '@/components/ui/alert-dialog/AlertDialogTrigger.astro';
+import AlertDialogOverlay from '@/components/ui/alert-dialog/AlertDialogOverlay.astro';
+import AlertDialogContent from '@/components/ui/alert-dialog/AlertDialogContent.astro';
+import AlertDialogHeader from '@/components/ui/alert-dialog/AlertDialogHeader.astro';
+import AlertDialogTitle from '@/components/ui/alert-dialog/AlertDialogTitle.astro';
+import AlertDialogDescription from '@/components/ui/alert-dialog/AlertDialogDescription.astro';
+import AlertDialogFooter from '@/components/ui/alert-dialog/AlertDialogFooter.astro';
+import AlertDialogAction from '@/components/ui/alert-dialog/AlertDialogAction.astro';
+import AlertDialogCancel from '@/components/ui/alert-dialog/AlertDialogCancel.astro';`}
+/>
+</div>
+
+<div class="space-y-4">
+<Prose>
+### Usage
+</Prose>
+
+<CodeBlock code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"`} lang="astro" />
+
+<CodeBlock code={`<AlertDialog>
+  <AlertDialogTrigger>
+    <Button>Open</Button>
+  </AlertDialogTrigger>
+  <AlertDialogOverlay />
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`} lang="astro" />
+</div>
+
+<div class="space-y-8">
+<Prose>
+### Examples
+</Prose>
+
+<div class="space-y-4">
+<Prose>
+#### Destructive action
+</Prose>
+
+<ComponentPreview code={`<AlertDialog>
+  <AlertDialogTrigger>
+    <Button variant="destructive">Delete Project</Button>
+  </AlertDialogTrigger>
+  <AlertDialogOverlay />
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Delete project?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This will permanently delete the project "My Project" and all of its data. This action cannot be reversed.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction class="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+        Delete
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+  <AlertDialog>
+    <AlertDialogTrigger>
+      <Button variant="destructive">Delete Project</Button>
+    </AlertDialogTrigger>
+    <AlertDialogOverlay />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Delete project?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This will permanently delete the project "My Project" and all of its data. This action cannot be reversed.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction class="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+          Delete
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentPreview>
+</div>
+</div>
+
+<Prose>
+### Difference from Dialog
+
+Alert Dialog is specifically designed for confirmation actions:
+
+- **No close on overlay click** - Users must explicitly choose an action
+- **Cancel button included** - Always provides a way to dismiss
+- **Focused interaction** - Emphasizes the confirm/cancel pattern
+- **Uses `role="alertdialog"`** - Proper accessibility semantics
+
+Use Alert Dialog when you need user confirmation before a destructive or important action.
+</Prose>
+
+<Prose>
+### Props
+
+All Alert Dialog components accept `class` for additional CSS classes.
+
+#### AlertDialogAction / AlertDialogCancel
+
+These are styled buttons. Override styles using the `class` prop.
+</Prose>

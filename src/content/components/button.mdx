@@ -1,0 +1,242 @@
+---
+title: Button
+description: Triggers actions and events.
+tagline: Interactive action triggers
+category: form
+status: stable
+order: 1
+---
+
+import ComponentPreview from "@/components/docs/ComponentPreview.astro";
+import CodeBlock from "@/components/docs/CodeBlock.astro";
+import Prose from "@/components/docs/Prose.astro";
+import Button from "@/components/ui/button/Button.astro";
+import Mail from "@lucide/astro/icons/mail";
+import LoaderCircle from "@lucide/astro/icons/loader-circle";
+import ChevronRight from "@lucide/astro/icons/chevron-right";
+
+<ComponentPreview code={`<Button>Button</Button>`}>
+  <Button>Button</Button>
+</ComponentPreview>
+
+<div class="space-y-4">
+<Prose>
+### Installation
+</Prose>
+
+<ComponentPreview 
+  component="button"
+  manual={`import Button from '@/components/ui/button/Button.astro';`}
+/>
+</div>
+
+<div class="space-y-4">
+<Prose>
+### Usage
+</Prose>
+
+<CodeBlock code={`import { Button } from "@/components/ui/button"`} lang="astro" />
+
+<CodeBlock code={`<Button>Button</Button>`} lang="astro" />
+</div>
+
+<div class="space-y-8">
+<Prose>
+### Examples
+</Prose>
+
+<div class="space-y-4">
+<Prose>
+#### Secondary
+</Prose>
+
+<ComponentPreview code={`<Button variant="secondary">Secondary</Button>`}>
+  <Button variant="secondary">Secondary</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Outline
+</Prose>
+
+<ComponentPreview code={`<Button variant="outline">Outline</Button>`}>
+  <Button variant="outline">Outline</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Ghost
+</Prose>
+
+<ComponentPreview code={`<Button variant="ghost">Ghost</Button>`}>
+  <Button variant="ghost">Ghost</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Link
+</Prose>
+
+<ComponentPreview code={`<Button variant="link">Link</Button>`}>
+  <Button variant="link">Link</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Destructive
+</Prose>
+
+<ComponentPreview code={`<Button variant="destructive">Destructive</Button>`}>
+  <Button variant="destructive">Destructive</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Success
+</Prose>
+
+<ComponentPreview code={`<Button variant="success">Success</Button>`}>
+  <Button variant="success">Success</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Warning
+</Prose>
+
+<ComponentPreview code={`<Button variant="warning">Warning</Button>`}>
+  <Button variant="warning">Warning</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Info
+</Prose>
+
+<ComponentPreview code={`<Button variant="info">Info</Button>`}>
+  <Button variant="info">Info</Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### With left icon
+</Prose>
+
+<ComponentPreview code={`<Button>
+  <Mail slot="left-icon" />
+  Login with Email
+</Button>`}>
+  <Button>
+    <Mail slot="left-icon" />
+    Login with Email
+  </Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### With right icon
+</Prose>
+
+<ComponentPreview code={`<Button>
+  Continue
+  <ChevronRight slot="right-icon" />
+</Button>`}>
+  <Button>
+    Continue
+    <ChevronRight slot="right-icon" />
+  </Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Icon only
+</Prose>
+
+<ComponentPreview code={`<Button iconOnly variant="outline">
+  <ChevronRight />
+</Button>`}>
+  <Button iconOnly variant="outline">
+    <ChevronRight />
+  </Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Loading
+</Prose>
+
+<ComponentPreview code={`<Button disabled>
+  <LoaderCircle slot="left-icon" class="animate-spin" />
+  Please wait
+</Button>`}>
+  <Button disabled>
+    <LoaderCircle slot="left-icon" class="animate-spin" />
+    Please wait
+  </Button>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### Sizes
+</Prose>
+
+<ComponentPreview code={`<div class="flex items-center gap-2">
+  <Button size="xs">Extra Small</Button>
+  <Button size="sm">Small</Button>
+  <Button size="default">Default</Button>
+  <Button size="lg">Large</Button>
+  <Button size="xl">Extra Large</Button>
+</div>`}>
+  <div class="flex flex-wrap items-center gap-2">
+    <Button size="xs">Extra Small</Button>
+    <Button size="sm">Small</Button>
+    <Button size="default">Default</Button>
+    <Button size="lg">Large</Button>
+    <Button size="xl">Extra Large</Button>
+  </div>
+</ComponentPreview>
+</div>
+
+<div class="space-y-4">
+<Prose>
+#### As link
+</Prose>
+
+<ComponentPreview code={`<Button href="/docs">Documentation</Button>`}>
+  <Button href="/docs">Documentation</Button>
+</ComponentPreview>
+</div>
+</div>
+
+<Prose>
+### Anatomy
+
+- `Button` - A single interactive element with slots for icons
+</Prose>
+
+<Prose>
+### Props
+
+#### Button
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | default \| destructive \| outline \| secondary \| ghost \| link \| success \| warning \| info | default | Visual style variant |
+| size | xs \| sm \| default \| lg \| xl | default | Button size |
+| iconOnly | boolean | false | Square button for icon-only use |
+| href | string | - | Renders as anchor link |
+| disabled | boolean | false | Disables the button |
+| class | string | - | Additional CSS classes |
+</Prose>
