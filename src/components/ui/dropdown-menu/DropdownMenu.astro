@@ -2,12 +2,19 @@
 import { cn } from '@/utils/cn';
 import type { HTMLAttributes } from 'astro/types';
 
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  keepOpen?: boolean;
+}
 
-const { class: className, ...props } = Astro.props;
+const { class: className, keepOpen = false, ...props } = Astro.props;
 ---
 
-<div class={cn('relative inline-block text-left', className)} data-dropdown {...props}>
+<div 
+  class={cn('relative inline-block text-left', className)} 
+  data-dropdown 
+  data-keep-open={keepOpen ? 'true' : undefined}
+  {...props}
+>
   <slot />
 </div>
 
@@ -148,12 +155,15 @@ const { class: className, ...props } = Astro.props;
         }
       });
 
-      // Handle item clicks
-      content.querySelectorAll('[data-dropdown-item]').forEach((item) => {
-        item.addEventListener('click', () => {
-          closeDropdown();
+      // Handle item clicks (unless keepOpen is set)
+      const keepOpen = dropdown.hasAttribute('data-keep-open');
+      if (!keepOpen) {
+        content.querySelectorAll('[data-dropdown-item]').forEach((item) => {
+          item.addEventListener('click', () => {
+            closeDropdown();
+          });
         });
-      });
+      }
     });
   }
 

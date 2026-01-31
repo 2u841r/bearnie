@@ -6,7 +6,6 @@ import { primaryColorValues, primaryColorOptions } from '../data/primary-colors'
 import { radiusNames, radiusOptions } from '../data/radius';
 import { fontFamilies, fontOptions } from '../data/fonts';
 import { stylePresets, styleOptions } from '../data/styles';
-import { iconLibraryOptions } from '../data/icon-libraries';
 
 // State
 const state = {
@@ -16,7 +15,13 @@ const state = {
   radius: '0.625',
   spacing: '0.25',
   font: 'inter',
-  iconLibrary: 'lucide'
+  buttonRadius: '', // empty = use --radius, 'full' = pill buttons
+  cardBorder: true,
+  cardPadding: true,
+  cardShadow: false,
+  borderWidth: '1px',
+  uppercase: false,
+  textScale: 'normal'
 };
 
 // Elements
@@ -28,7 +33,6 @@ const primaryColorLabel = document.getElementById('primary-color-label');
 const primaryColorDot = document.getElementById('primary-color-dot');
 const radiusLabel = document.getElementById('radius-label');
 const fontLabel = document.getElementById('font-label');
-const iconLibraryLabel = document.getElementById('icon-library-label');
 const copyCssBtn = document.getElementById('copy-css');
 const resetBtn = document.getElementById('reset-theme');
 const shuffleBtn = document.getElementById('shuffle-theme');
@@ -38,9 +42,8 @@ const createModal = document.querySelector('[data-create-modal]');
 // Style icon rx values
 const styleIconRx: Record<string, string> = {
   bearnie: '3',
-  'monana-nui': '6',
   rere: '0',
-  valentina: '4',
+  valentina: '5',
 };
 
 // Tailwind color class mapping for dots
@@ -133,8 +136,36 @@ function updateTheme() {
     el.style.setProperty('--primary-foreground', isDark ? primary.darkFg : primary.lightFg);
     el.style.setProperty('--ring', isDark ? primary.dark : primary.light);
 
+    // Destructive colors (static)
+    el.style.setProperty('--destructive', 'oklch(0.577 0.245 27.325)');
+    el.style.setProperty('--destructive-foreground', 'oklch(0.985 0 0)');
+
     // Radius
     el.style.setProperty('--radius', `${state.radius}rem`);
+    
+    // Button radius (for pill buttons in certain styles)
+    const buttonRadiusValue = state.buttonRadius === 'full' ? '9999px' : `${state.radius}rem`;
+    el.style.setProperty('--button-radius', buttonRadiusValue);
+
+    // Card border (for borderless styles like rere)
+    el.style.setProperty('--card-border', state.cardBorder ? state.borderWidth : '0px');
+    
+    // Card padding (for minimal styles like rere)
+    el.style.setProperty('--card-padding', state.cardPadding ? '1.5rem' : '0');
+
+    // Card shadow (for soft styles like monana-nui and valentina)
+    el.style.setProperty('--card-shadow', state.cardShadow ? '0 2px 8px rgba(0, 0, 0, 0.04)' : 'none');
+
+    // Text transform (for swiss style like rere)
+    el.style.setProperty('--heading-transform', state.uppercase ? 'uppercase' : 'none');
+    el.style.setProperty('--heading-tracking', state.uppercase ? '0.05em' : 'normal');
+
+    // Text scale (for bold styles like valentina)
+    const textScaleMultiplier = state.textScale === 'large' ? '1.1' : '1';
+    el.style.setProperty('--text-scale', textScaleMultiplier);
+
+    // Spacing (used for padding/gaps)
+    el.style.setProperty('--spacing', `${state.spacing}rem`);
 
     // Font
     el.style.setProperty('--font-sans', fontFamily);
@@ -148,7 +179,6 @@ function updateTheme() {
   updateChecks('primary-color', state.primaryColor);
   updateChecks('radius', state.radius);
   updateChecks('font', state.font);
-  updateChecks('icon-library', state.iconLibrary);
 }
 
 // URL query params (cleaner format like ?style=bearnie&baseColor=neutral&primaryColor=blue)
@@ -160,7 +190,6 @@ function stateToParams(): URLSearchParams {
   if (state.primaryColor !== 'neutral') params.set('primaryColor', state.primaryColor);
   if (state.radius !== '0.625') params.set('radius', state.radius);
   if (state.font !== 'inter') params.set('font', state.font);
-  if (state.iconLibrary !== 'lucide') params.set('iconLibrary', state.iconLibrary);
   return params;
 }
 
@@ -171,12 +200,16 @@ function paramsToState(params: URLSearchParams): Partial<typeof state> {
   if (params.has('primaryColor')) result.primaryColor = params.get('primaryColor')!;
   if (params.has('radius')) result.radius = params.get('radius')!;
   if (params.has('font')) result.font = params.get('font')!;
-  if (params.has('iconLibrary')) result.iconLibrary = params.get('iconLibrary')!;
   return result;
 }
 
 function updateUrl() {
   const params = stateToParams();
+  // Preserve the item param if it exists
+  const currentParams = new URLSearchParams(window.location.search);
+  const item = currentParams.get('item');
+  if (item) params.set('item', item);
+  
   const queryString = params.toString();
   const newUrl = queryString ? `?${queryString}` : window.location.pathname;
   history.replaceState(null, '', newUrl);
@@ -284,12 +317,15 @@ function generateCSS(): string {
 }`;
 }
 
-// Event listeners for dropdown items
+// Event listeners using event delegation for reliability with dropdowns
 
-// Style preset selection
-document.querySelectorAll('[data-style]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-style') || 'valentina';
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  
+  // Style preset selection
+  const styleTarget = target.closest('[data-style]');
+  if (styleTarget) {
+    const value = styleTarget.getAttribute('data-style') || 'bearnie';
     state.style = value;
     
     // Apply preset values
@@ -298,72 +334,77 @@ document.querySelectorAll('[data-style]').forEach(item => {
       state.radius = preset.radius;
       state.spacing = preset.spacing;
       state.font = preset.font;
+      state.buttonRadius = preset.buttonRadius || '';
+      state.cardBorder = preset.cardBorder !== false;
+      state.cardPadding = preset.cardPadding !== false;
+      state.cardShadow = preset.cardShadow === true;
+      state.borderWidth = preset.borderWidth || '1px';
+      state.uppercase = preset.uppercase === true;
+      state.textScale = preset.textScale || 'normal';
       
       // Update individual labels
       if (radiusLabel) radiusLabel.textContent = radiusNames[preset.radius] || 'Medium';
       if (fontLabel) {
-        const fontName = preset.font.charAt(0).toUpperCase() + preset.font.slice(1);
+        const fontName = fontOptions.find(f => f.value === preset.font)?.name || 'Inter';
         fontLabel.textContent = fontName;
       }
     }
     
     // Update style label and icon
-    const styleName = styleOptions.find(s => s.value === value)?.name || 'Valentina';
+    const styleName = styleOptions.find(s => s.value === value)?.name || 'Bearnie';
     if (styleLabel) styleLabel.textContent = styleName;
     if (styleIcon) styleIcon.setAttribute('rx', styleIconRx[value] || '3');
     
     updateTheme();
-  });
-});
-
-// Base color selection
-document.querySelectorAll('[data-base-color]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-base-color') || 'neutral';
+    return;
+  }
+  
+  // Base color selection
+  const baseColorTarget = target.closest('[data-base-color]');
+  if (baseColorTarget) {
+    const value = baseColorTarget.getAttribute('data-base-color') || 'neutral';
     state.baseColor = value;
-    if (baseColorLabel) baseColorLabel.textContent = item.textContent?.trim().split('\n')[0] || 'Neutral';
+    const colorName = baseColorOptions.find(c => c.value === value)?.name || 'Neutral';
+    if (baseColorLabel) baseColorLabel.textContent = colorName;
     updateColorDot(baseColorDot, value);
     updateTheme();
-  });
-});
-
-document.querySelectorAll('[data-primary-color]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-primary-color') || 'neutral';
+    return;
+  }
+  
+  // Primary color selection
+  const primaryColorTarget = target.closest('[data-primary-color]');
+  if (primaryColorTarget) {
+    const value = primaryColorTarget.getAttribute('data-primary-color') || 'neutral';
     state.primaryColor = value;
-    if (primaryColorLabel) primaryColorLabel.textContent = item.textContent?.trim().split('\n')[0] || 'Neutral';
+    const colorName = primaryColorOptions.find(c => c.value === value)?.name || 'Neutral';
+    if (primaryColorLabel) primaryColorLabel.textContent = colorName;
     updateColorDot(primaryColorDot, value, true);
     updateTheme();
-  });
-});
-
-document.querySelectorAll('[data-radius]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-radius') || '0.625';
+    return;
+  }
+  
+  // Radius selection
+  const radiusTarget = target.closest('[data-radius]');
+  if (radiusTarget) {
+    const value = radiusTarget.getAttribute('data-radius') || '0.625';
     state.radius = value;
-    if (radiusLabel) radiusLabel.textContent = item.textContent?.trim().split('\n')[0] || 'Medium';
+    const radiusName = radiusOptions.find(r => r.value === value)?.name || 'Medium';
+    if (radiusLabel) radiusLabel.textContent = radiusName;
     updateTheme();
-  });
-});
-
-document.querySelectorAll('[data-font]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-font') || 'inter';
+    return;
+  }
+  
+  // Font selection
+  const fontTarget = target.closest('[data-font]');
+  if (fontTarget) {
+    const value = fontTarget.getAttribute('data-font') || 'inter';
     state.font = value;
-    if (fontLabel) fontLabel.textContent = item.textContent?.trim().split('\n')[0] || 'Inter';
+    const fontName = fontOptions.find(f => f.value === value)?.name || 'Inter';
+    if (fontLabel) fontLabel.textContent = fontName;
     updateTheme();
-  });
-});
-
-// Icon library selection
-document.querySelectorAll('[data-icon-library]').forEach(item => {
-  item.addEventListener('click', () => {
-    const value = item.getAttribute('data-icon-library') || 'lucide';
-    state.iconLibrary = value;
-    const libName = iconLibraryOptions.find(l => l.value === value)?.name || 'Lucide';
-    if (iconLibraryLabel) iconLibraryLabel.textContent = libName;
-    updateTheme();
-  });
+    return;
+  }
+  
 });
 
 // Package manager tab switching in modal
@@ -371,7 +412,7 @@ if (createModal) {
   const pmTabs = createModal.querySelectorAll('[data-pm-tab]');
   const pmPanels = createModal.querySelectorAll('[data-pm-panel]');
   
-  function setActivePmTab(activeValue: string) {
+  const setActivePmTab = (activeValue: string) => {
     pmTabs.forEach(tab => {
       if (tab.getAttribute('data-pm-tab') === activeValue) {
         tab.setAttribute('data-active', '');
@@ -387,7 +428,7 @@ if (createModal) {
         panel.classList.add('hidden');
       }
     });
-  }
+  };
   
   pmTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -442,14 +483,19 @@ resetBtn?.addEventListener('click', () => {
   state.radius = '0.625';
   state.spacing = '0.25';
   state.font = 'inter';
-  state.iconLibrary = 'lucide';
+  state.buttonRadius = '';
+  state.cardBorder = true;
+  state.cardPadding = true;
+  state.cardShadow = false;
+  state.borderWidth = '1px';
+  state.uppercase = false;
+  state.textScale = 'normal';
   if (styleLabel) styleLabel.textContent = 'Bearnie';
   if (styleIcon) styleIcon.setAttribute('rx', '3');
   if (baseColorLabel) baseColorLabel.textContent = 'Neutral';
   if (primaryColorLabel) primaryColorLabel.textContent = 'Neutral';
   if (radiusLabel) radiusLabel.textContent = 'Medium';
   if (fontLabel) fontLabel.textContent = 'Inter';
-  if (iconLibraryLabel) iconLibraryLabel.textContent = 'Lucide';
   updateColorDot(baseColorDot, 'neutral');
   updateColorDot(primaryColorDot, 'neutral', true);
   updateTheme();
@@ -463,7 +509,6 @@ shuffleBtn?.addEventListener('click', () => {
   const randomPrimaryColor = primaryColorOptions[Math.floor(Math.random() * primaryColorOptions.length)];
   const randomRadius = radiusOptions[Math.floor(Math.random() * radiusOptions.length)];
   const randomFont = fontOptions[Math.floor(Math.random() * fontOptions.length)];
-  const randomIconLib = iconLibraryOptions[Math.floor(Math.random() * iconLibraryOptions.length)];
   
   // Update state
   state.style = 'bearnie'; // Keep style as custom
@@ -471,7 +516,6 @@ shuffleBtn?.addEventListener('click', () => {
   state.primaryColor = randomPrimaryColor.value;
   state.radius = randomRadius.value;
   state.font = randomFont.value;
-  state.iconLibrary = randomIconLib.value;
   
   // Update labels
   if (styleLabel) styleLabel.textContent = 'Custom';
@@ -480,7 +524,6 @@ shuffleBtn?.addEventListener('click', () => {
   if (primaryColorLabel) primaryColorLabel.textContent = randomPrimaryColor.name;
   if (radiusLabel) radiusLabel.textContent = randomRadius.name;
   if (fontLabel) fontLabel.textContent = randomFont.name;
-  if (iconLibraryLabel) iconLibraryLabel.textContent = randomIconLib.name;
   
   // Update color dots
   updateColorDot(baseColorDot, randomBaseColor.value);
@@ -514,10 +557,6 @@ function init() {
       const fontName = fontOptions.find(f => f.value === state.font)?.name || 'Inter';
       fontLabel.textContent = fontName;
     }
-    
-    // Update icon library label
-    const libName = iconLibraryOptions.find(l => l.value === state.iconLibrary)?.name || 'Lucide';
-    if (iconLibraryLabel) iconLibraryLabel.textContent = libName;
     
     // Update color dots
     updateColorDot(baseColorDot, state.baseColor);
