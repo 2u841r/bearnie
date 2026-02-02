@@ -1,20 +1,15 @@
 ---
-import { cn } from '@/utils/cn';
-import type { HTMLAttributes } from 'astro/types';
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
 
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<"div"> {}
 
 const { class: className, ...props } = Astro.props;
 
 const classes = cn(
-  'fixed inset-0 z-50 bg-black/20 dark:bg-black/80 backdrop-blur-sm',
-  className
+  "fixed inset-0 z-50 bg-overlay/10 backdrop-blur-sm",
+  className,
 );
 ---
 
-<div
-  class={classes}
-  data-alert-dialog-overlay
-  hidden
-  {...props}
-/>
+<div class={classes} data-alert-dialog-overlay hidden {...props}></div>

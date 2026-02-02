@@ -6,11 +6,7 @@ export interface Props extends HTMLAttributes<"span"> {
   size?: "xs" | "sm" | "default" | "lg" | "xl";
 }
 
-const {
-  size = "default",
-  class: className,
-  ...props
-} = Astro.props;
+const { size = "default", class: className, ...props } = Astro.props;
 
 const sizeStyles = {
   xs: "h-7 px-2.5 text-xs",
@@ -21,9 +17,9 @@ const sizeStyles = {
 };
 
 const classes = cn(
-  "inline-flex items-center justify-center font-medium text-muted-foreground bg-muted border border-input rounded-md",
+  "inline-flex items-center justify-center font-medium text-muted-foreground bg-backgorund border border-input rounded-md",
   sizeStyles[size],
-  className
+  className,
 );
 ---
 

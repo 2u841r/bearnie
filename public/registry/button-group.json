@@ -19,7 +19,7 @@
     {
       "name": "ButtonGroupText.astro",
       "path": "button-group/ButtonGroupText.astro",
-      "content": "---\nimport { cn } from \"@/utils/cn\";\nimport type { HTMLAttributes } from \"astro/types\";\n\nexport interface Props extends HTMLAttributes<\"span\"> {\n  size?: \"xs\" | \"sm\" | \"default\" | \"lg\" | \"xl\";\n}\n\nconst {\n  size = \"default\",\n  class: className,\n  ...props\n} = Astro.props;\n\nconst sizeStyles = {\n  xs: \"h-7 px-2.5 text-xs\",\n  sm: \"h-8 px-3 text-xs\",\n  default: \"h-9 px-3 text-sm\",\n  lg: \"h-10 px-4 text-base\",\n  xl: \"h-11 px-5 text-lg\",\n};\n\nconst classes = cn(\n  \"inline-flex items-center justify-center font-medium text-muted-foreground bg-muted border border-input rounded-md\",\n  sizeStyles[size],\n  className\n);\n---\n\n<span class={classes} {...props}>\n  <slot />\n</span>\n"
+      "content": "---\nimport { cn } from \"@/utils/cn\";\nimport type { HTMLAttributes } from \"astro/types\";\n\nexport interface Props extends HTMLAttributes<\"span\"> {\n  size?: \"xs\" | \"sm\" | \"default\" | \"lg\" | \"xl\";\n}\n\nconst { size = \"default\", class: className, ...props } = Astro.props;\n\nconst sizeStyles = {\n  xs: \"h-7 px-2.5 text-xs\",\n  sm: \"h-8 px-3 text-xs\",\n  default: \"h-9 px-3 text-sm\",\n  lg: \"h-10 px-4 text-base\",\n  xl: \"h-11 px-5 text-lg\",\n};\n\nconst classes = cn(\n  \"inline-flex items-center justify-center font-medium text-muted-foreground bg-backgorund border border-input rounded-md\",\n  sizeStyles[size],\n  className,\n);\n---\n\n<span class={classes} {...props}>\n  <slot />\n</span>\n"
     }
   ]
 }

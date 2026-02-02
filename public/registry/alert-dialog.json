@@ -26,7 +26,7 @@
     {
       "name": "AlertDialogContent.astro",
       "path": "alert-dialog/AlertDialogContent.astro",
-      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'fixed left-1/2 top-1/2 z-50 grid w-full max-w-sm -translate-x-1/2 -translate-y-1/2 border bg-background shadow-lg sm:rounded-lg',\n  className\n);\n---\n\n<div\n  class={classes}\n  data-alert-dialog-content\n  role=\"alertdialog\"\n  aria-modal=\"true\"\n  hidden\n  {...props}\n>\n  <slot />\n</div>\n"
+      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'fixed left-1/2 top-1/2 z-50 grid w-full max-w-sm -translate-x-1/2 -translate-y-1/2 border bg-background shadow-lg rounded-lg',\n  className\n);\n---\n\n<div\n  class={classes}\n  data-alert-dialog-content\n  role=\"alertdialog\"\n  aria-modal=\"true\"\n  hidden\n  {...props}\n>\n  <slot />\n</div>\n"
     },
     {
       "name": "AlertDialogDescription.astro",
@@ -36,17 +36,17 @@
     {
       "name": "AlertDialogFooter.astro",
       "path": "alert-dialog/AlertDialogFooter.astro",
-      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end border-t px-6 py-4',\n  className\n);\n---\n\n<div class={classes} {...props}>\n  <slot />\n</div>\n"
+      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'flex flex-wrap gap-2 justify-center lg:justify-end border-t px-6 py-4',\n  className\n);\n---\n\n<div class={classes} {...props}>\n  <slot />\n</div>\n"
     },
     {
       "name": "AlertDialogHeader.astro",
       "path": "alert-dialog/AlertDialogHeader.astro",
-      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'flex flex-col gap-2 text-center sm:text-left p-6 pb-4',\n  className\n);\n---\n\n<div class={classes} {...props}>\n  <slot />\n</div>\n"
+      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'flex flex-col gap-2 text-center sm:text-left p-6 ',\n  className\n);\n---\n\n<div class={classes} {...props}>\n  <slot />\n</div>\n"
     },
     {
       "name": "AlertDialogOverlay.astro",
       "path": "alert-dialog/AlertDialogOverlay.astro",
-      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'fixed inset-0 z-50 bg-black/20 dark:bg-black/80 backdrop-blur-sm',\n  className\n);\n---\n\n<div\n  class={classes}\n  data-alert-dialog-overlay\n  hidden\n  {...props}\n/>\n"
+      "content": "---\nimport { cn } from \"@/utils/cn\";\nimport type { HTMLAttributes } from \"astro/types\";\n\nexport interface Props extends HTMLAttributes<\"div\"> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  \"fixed inset-0 z-50 bg-overlay/10 backdrop-blur-sm\",\n  className,\n);\n---\n\n<div class={classes} data-alert-dialog-overlay hidden {...props}></div>\n"
     },
     {
       "name": "AlertDialogTitle.astro",

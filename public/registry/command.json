@@ -26,7 +26,7 @@
     {
       "name": "CommandDialogOverlay.astro",
       "path": "command/CommandDialogOverlay.astro",
-      "content": "---\nimport { cn } from '@/utils/cn';\nimport type { HTMLAttributes } from 'astro/types';\n\nexport interface Props extends HTMLAttributes<'div'> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  'fixed inset-0 z-50 bg-black/80',\n  className\n);\n---\n\n<div class={classes} data-command-dialog-overlay hidden {...props} />\n"
+      "content": "---\nimport { cn } from \"@/utils/cn\";\nimport type { HTMLAttributes } from \"astro/types\";\n\nexport interface Props extends HTMLAttributes<\"div\"> {}\n\nconst { class: className, ...props } = Astro.props;\n\nconst classes = cn(\n  \"fixed inset-0 z-50 bg-overlay/10 backdrop-blur-sm\",\n  className,\n);\n---\n\n<div class={classes} data-command-dialog-overlay hidden {...props}></div>\n"
     },
     {
       "name": "CommandDialogTrigger.astro",

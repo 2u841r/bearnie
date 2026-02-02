@@ -12,9 +12,10 @@ const { navigation, currentPath } = Astro.props;
 
 <!-- Backdrop overlay -->
 <div
-  class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+  class="fixed inset-0 z-40 bg-overlay/10 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
   id="docs-mobile-backdrop"
-></div>
+>
+</div>
 <!-- Mobile sidebar -->
 <aside
   class="fixed inset-y-0 left-0 z-50 w-72 bg-muted border-r transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
@@ -45,6 +46,10 @@ const { navigation, currentPath } = Astro.props;
     </button>
   </div>
   <div class="h-[calc(100vh-3.5rem)] overflow-y-auto">
-    <SidebarNav navigation={navigation} currentPath={currentPath} themeToggleSize="xs" />
+    <SidebarNav
+      navigation={navigation}
+      currentPath={currentPath}
+      themeToggleSize="xs"
+    />
   </div>
 </aside>
