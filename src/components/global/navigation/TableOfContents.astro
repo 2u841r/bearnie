@@ -6,13 +6,34 @@ const { contentId = "docs-content" } = Astro.props;
 ---
 
 <aside
-  class="hidden xl:block shrink-0 lg:w-62 overflow-y-auto scrollbar-hide px-4 pt-8 sticky top-0 self-start max-h-screen"
+  class="hidden xl:flex flex-col shrink-0 lg:w-62 px-4 pt-8 pb-8 sticky top-0 self-start h-[calc(100vh-3.5rem)]"
 >
-  <div class="space-y-3">
+  <!-- TOC - scrollable -->
+  <div class="flex-1 min-h-0 overflow-y-auto scrollbar-hide pr-1 space-y-3">
     <p class="font-medium text-sm text-foreground">On this page</p>
     <nav class="text-sm relative" id="docs-toc" data-content-id={contentId}>
       <!-- TOC will be populated by JavaScript -->
     </nav>
+  </div>
+
+  <!-- Banner - fixed at bottom -->
+  <div class="shrink-0 pt-6">
+    <div class="bg-muted/50 rounded-lg border p-4">
+      <h3 class="text-sm font-semibold tracking-tight text-foreground">
+        Premium Astro & Tailwind CSS themes
+      </h3>
+      <p class="mt-2 text-xs text-muted-foreground">
+        3-Year Anniversary — 50% OFF. Full access to all themes . Use code LEX50
+        for just $99.
+      </p>
+      <button
+        type="button"
+        onclick="window.open('http://lexingtonthemes.com/', '_blank', 'noopener,noreferrer')"
+        class="mt-4 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+      >
+        Get Access
+      </button>
+    </div>
   </div>
 </aside>
 
