@@ -31,12 +31,7 @@ import AvatarGroup from "@/components/ui/avatar/AvatarGroup.astro";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="avatar"
-  manual={`import Avatar from '@/components/ui/avatar/Avatar.astro';
-import AvatarImage from '@/components/ui/avatar/AvatarImage.astro';
-import AvatarFallback from '@/components/ui/avatar/AvatarFallback.astro';`}
-/>
+<ComponentPreview component="avatar" />
 </div>
 
 <div class="space-y-4">
@@ -48,7 +43,7 @@ import AvatarFallback from '@/components/ui/avatar/AvatarFallback.astro';`}
   Avatar,
   AvatarImage,
   AvatarFallback,
-} from "@/components/ui/avatar"`} lang="astro" />
+} from "@/components/bearnie/avatar"`} lang="astro" />
 
 <CodeBlock code={`<Avatar>
   <AvatarImage src="/images/avatars/user.png" alt="User" />

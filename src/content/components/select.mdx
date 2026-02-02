@@ -31,11 +31,7 @@ import Label from "@/components/ui/label/Label.astro";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="select"
-  manual={`import Select from '@/components/ui/select/Select.astro';
-import SelectOption from '@/components/ui/select/SelectOption.astro';`}
-/>
+<ComponentPreview component="select" />
 </div>
 
 <div class="space-y-4">
@@ -43,7 +39,7 @@ import SelectOption from '@/components/ui/select/SelectOption.astro';`}
 ### Usage
 </Prose>
 
-<CodeBlock code={`import { Select } from "@/components/ui/select"`} lang="astro" />
+<CodeBlock code={`import { Select } from "@/components/bearnie/select"`} lang="astro" />
 
 <CodeBlock code={`<Select placeholder="Select an option">
   <option value="one">Option One</option>

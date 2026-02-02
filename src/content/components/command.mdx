@@ -113,17 +113,7 @@ import Settings from "@lucide/astro/icons/settings";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="command"
-  manual={`import Command from '@/components/ui/command/Command.astro';
-import CommandInput from '@/components/ui/command/CommandInput.astro';
-import CommandList from '@/components/ui/command/CommandList.astro';
-import CommandEmpty from '@/components/ui/command/CommandEmpty.astro';
-import CommandGroup from '@/components/ui/command/CommandGroup.astro';
-import CommandItem from '@/components/ui/command/CommandItem.astro';
-import CommandSeparator from '@/components/ui/command/CommandSeparator.astro';
-import CommandShortcut from '@/components/ui/command/CommandShortcut.astro';`}
-/>
+<ComponentPreview component="command" />
 </div>
 
 <div class="space-y-4">
@@ -140,7 +130,7 @@ import CommandShortcut from '@/components/ui/command/CommandShortcut.astro';`}
   CommandItem,
   CommandSeparator,
   CommandShortcut,
-} from "@/components/ui/command"`} lang="astro" />
+} from "@/components/bearnie/command"`} lang="astro" />
 
 <CodeBlock code={`<Command class="max-w-md rounded-lg border">
   <CommandInput placeholder="Search..." />

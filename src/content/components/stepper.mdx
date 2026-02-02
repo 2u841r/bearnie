@@ -79,15 +79,7 @@ import Check from "@lucide/astro/icons/check";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="stepper"
-  manual={`import Stepper from '@/components/ui/stepper/Stepper.astro';
-import StepperItem from '@/components/ui/stepper/StepperItem.astro';
-import StepperTrigger from '@/components/ui/stepper/StepperTrigger.astro';
-import StepperTitle from '@/components/ui/stepper/StepperTitle.astro';
-import StepperDescription from '@/components/ui/stepper/StepperDescription.astro';
-import StepperSeparator from '@/components/ui/stepper/StepperSeparator.astro';`}
-/>
+<ComponentPreview component="stepper" />
 </div>
 
 <div class="space-y-4">
@@ -102,7 +94,7 @@ import StepperSeparator from '@/components/ui/stepper/StepperSeparator.astro';`}
   StepperTitle,
   StepperDescription,
   StepperSeparator,
-} from "@/components/ui/stepper"`} lang="astro" />
+} from "@/components/bearnie/stepper"`} lang="astro" />
 
 <CodeBlock code={`<Stepper activeStep={0}>
   <StepperItem step={0}>

@@ -92,16 +92,7 @@ import Share from "@lucide/astro/icons/share";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="context-menu"
-  manual={`import ContextMenu from '@/components/ui/context-menu/ContextMenu.astro';
-import ContextMenuTrigger from '@/components/ui/context-menu/ContextMenuTrigger.astro';
-import ContextMenuContent from '@/components/ui/context-menu/ContextMenuContent.astro';
-import ContextMenuItem from '@/components/ui/context-menu/ContextMenuItem.astro';
-import ContextMenuSeparator from '@/components/ui/context-menu/ContextMenuSeparator.astro';
-import ContextMenuLabel from '@/components/ui/context-menu/ContextMenuLabel.astro';
-import ContextMenuShortcut from '@/components/ui/context-menu/ContextMenuShortcut.astro';`}
-/>
+<ComponentPreview component="context-menu" />
 </div>
 
 <div class="space-y-4">
@@ -114,7 +105,7 @@ import ContextMenuShortcut from '@/components/ui/context-menu/ContextMenuShortcu
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu"`} lang="astro" />
+} from "@/components/bearnie/context-menu"`} lang="astro" />
 
 <CodeBlock code={`<ContextMenu>
   <ContextMenuTrigger>Right click here</ContextMenuTrigger>

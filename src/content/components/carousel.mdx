@@ -80,17 +80,7 @@ import CardContent from "@/components/ui/card/CardContent.astro";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="carousel"
-  manual={`npm install keen-slider
-
-import Carousel from '@/components/ui/carousel/Carousel.astro';
-import CarouselContent from '@/components/ui/carousel/CarouselContent.astro';
-import CarouselItem from '@/components/ui/carousel/CarouselItem.astro';
-import CarouselPrevious from '@/components/ui/carousel/CarouselPrevious.astro';
-import CarouselNext from '@/components/ui/carousel/CarouselNext.astro';
-import CarouselDots from '@/components/ui/carousel/CarouselDots.astro';`}
-/>
+<ComponentPreview component="carousel" />
 
 <Prose>
 > **External dependency**: This component requires <a href="https://keen-slider.io/" target="_blank" rel="noreferrer">Keen Slider</a>, a lightweight touch slider library.
@@ -109,7 +99,7 @@ import CarouselDots from '@/components/ui/carousel/CarouselDots.astro';`}
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
-} from "@/components/ui/carousel"`} lang="astro" />
+} from "@/components/bearnie/carousel"`} lang="astro" />
 
 <CodeBlock code={`<Carousel>
   <CarouselContent>

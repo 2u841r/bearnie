@@ -55,13 +55,7 @@ import Label from "@/components/ui/label/Label.astro";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="tabs"
-  manual={`import Tabs from '@/components/ui/tabs/Tabs.astro';
-import TabsList from '@/components/ui/tabs/TabsList.astro';
-import TabsTrigger from '@/components/ui/tabs/TabsTrigger.astro';
-import TabsContent from '@/components/ui/tabs/TabsContent.astro';`}
-/>
+<ComponentPreview component="tabs" />
 </div>
 
 <div class="space-y-4">
@@ -74,7 +68,7 @@ import TabsContent from '@/components/ui/tabs/TabsContent.astro';`}
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "@/components/ui/tabs"`} lang="astro" />
+} from "@/components/bearnie/tabs"`} lang="astro" />
 
 <CodeBlock code={`<Tabs defaultValue="tab1">
   <TabsList>

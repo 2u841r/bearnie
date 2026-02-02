@@ -61,17 +61,7 @@ import DialogFooter from "@/components/ui/dialog/DialogFooter.astro";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="dialog"
-  manual={`import Dialog from '@/components/ui/dialog/Dialog.astro';
-import DialogTrigger from '@/components/ui/dialog/DialogTrigger.astro';
-import DialogOverlay from '@/components/ui/dialog/DialogOverlay.astro';
-import DialogContent from '@/components/ui/dialog/DialogContent.astro';
-import DialogHeader from '@/components/ui/dialog/DialogHeader.astro';
-import DialogTitle from '@/components/ui/dialog/DialogTitle.astro';
-import DialogDescription from '@/components/ui/dialog/DialogDescription.astro';
-import DialogFooter from '@/components/ui/dialog/DialogFooter.astro';`}
-/>
+<ComponentPreview component="dialog" />
 </div>
 
 <div class="space-y-4">
@@ -88,7 +78,7 @@ import DialogFooter from '@/components/ui/dialog/DialogFooter.astro';`}
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog"`} lang="astro" />
+} from "@/components/bearnie/dialog"`} lang="astro" />
 
 <CodeBlock code={`<Dialog>
   <DialogTrigger>

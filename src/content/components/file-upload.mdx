@@ -46,14 +46,7 @@ import Upload from "@lucide/astro/icons/upload";
 ### Installation
 </Prose>
 
-<ComponentPreview
-  component="file-upload"
-  manual={`import FileUpload from '@/components/ui/file-upload/FileUpload.astro';
-import FileUploadTrigger from '@/components/ui/file-upload/FileUploadTrigger.astro';
-import FileUploadInput from '@/components/ui/file-upload/FileUploadInput.astro';
-import FileUploadDropzone from '@/components/ui/file-upload/FileUploadDropzone.astro';
-import FileUploadPreview from '@/components/ui/file-upload/FileUploadPreview.astro';`}
-/>
+<ComponentPreview component="file-upload" />
 </div>
 
 <div class="space-y-4">
@@ -67,7 +60,7 @@ import FileUploadPreview from '@/components/ui/file-upload/FileUploadPreview.ast
   FileUploadInput,
   FileUploadDropzone,
   FileUploadPreview,
-} from "@/components/ui/file-upload"`} lang="astro" />
+} from "@/components/bearnie/file-upload"`} lang="astro" />
 
 <CodeBlock code={`<FileUpload class="space-y-4">
   <FileUploadInput name="file" />
