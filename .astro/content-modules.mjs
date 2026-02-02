@@ -51,5 +51,7 @@ export default new Map([
 ["src/content/components/toggle.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftoggle.mdx&astroContentModuleFlag=true")],
 ["src/content/components/tooltip.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftooltip.mdx&astroContentModuleFlag=true")],
 ["src/content/components/tree.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftree.mdx&astroContentModuleFlag=true")],
-["src/content/components/textarea.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftextarea.mdx&astroContentModuleFlag=true")]]);
+["src/content/components/textarea.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftextarea.mdx&astroContentModuleFlag=true")],
+["src/content/docs/typography.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Ftypography.mdx&astroContentModuleFlag=true")],
+["src/content/components/typography.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fcomponents%2Ftypography.mdx&astroContentModuleFlag=true")]]);
 		
