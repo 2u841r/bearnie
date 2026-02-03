@@ -12,6 +12,10 @@ Visit [https://bearnie.dev/docs](https://bearnie.dev/docs) to view the documenta
 
 Please read the [contributing guide](./CONTRIBUTING.md).
 
+## Sponsors
+
+If you find Bearnie useful, consider [sponsoring the project](https://github.com/sponsors/michael-andreuzza).
+
 ## License
 
 Licensed under the [MIT license](./LICENSE).

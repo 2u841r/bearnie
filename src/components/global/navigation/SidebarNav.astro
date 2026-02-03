@@ -2,6 +2,7 @@
 export interface NavigationItem {
   title: string;
   href: string;
+  external?: boolean;
 }
 export type NavigationIcon = "sparkles" | "component";
 export interface NavigationSection {
@@ -34,6 +35,9 @@ const { navigation, currentPath } = Astro.props;
                     ? "bg-primary/5 text-primary font-medium"
                     : "text-foreground hover:text-foreground hover:bg-muted",
                 ]}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {item.title}
               </a>
