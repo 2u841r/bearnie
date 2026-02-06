@@ -553,7 +553,7 @@ async function exportPng() {
     restoreAfterExport();
 
     const link = document.createElement("a");
-    link.download = "code-image.png";
+    link.download = "bearnie.dev.png";
     link.href = dataUrl;
     link.click();
     showToast("PNG saved!");
@@ -574,7 +574,7 @@ async function exportSvg() {
     restoreAfterExport();
 
     const link = document.createElement("a");
-    link.download = "code-image.svg";
+    link.download = "bearnie.dev.svg";
     link.href = dataUrl;
     link.click();
     showToast("SVG saved!");
