@@ -3,11 +3,31 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Navigation from "@/components/global/navigation/Navigation.astro";
 import CodeImagePreview from "@/components/code-image/CodeImagePreview.astro";
 import CodeImageBottomBar from "@/components/code-image/CodeImageBottomBar.astro";
+import Logo from "@/components/assets/Logo.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/ui/button/Button.astro";
+import Monitor from "@lucide/astro/icons/monitor";
 ---
 
 <BaseLayout showFooter={false} showNavigation={false} bodyClass="bg-muted">
+  <!-- Mobile empty state -->
+  <div class="flex lg:hidden flex-col items-center justify-center min-h-svh px-6 text-center">
+    <Logo class="size-10 mx-auto" />
+    <Monitor class="size-5 text-muted-foreground mt-8" />
+    <Text tag="h1" variant="textLG" class="font-medium tracking-tight mt-4">
+      Code to Image
+    </Text>
+    <Text tag="p" variant="textSM" class="text-muted-foreground mt-2 max-w-xs text-balance">
+      This tool is designed for desktop. Open it on a larger screen for the best experience.
+    </Text>
+    <Button href="/docs" size="default" variant="outline" class="mt-6">
+      Browse Docs
+    </Button>
+  </div>
+
+  <!-- Desktop tool -->
   <div
-    class="fixed inset-0 flex flex-col 2xl:max-w-350 mx-auto bg-muted overflow-hidden scrollbar-hide"
+    class="hidden lg:flex fixed inset-0 flex-col 2xl:max-w-350 mx-auto bg-muted overflow-hidden scrollbar-hide"
   >
     <Navigation variant="docs" />
 
