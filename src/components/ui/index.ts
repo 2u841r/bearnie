@@ -18,6 +18,7 @@ export { default as Label } from "./label/Label.astro";
 export { default as Textarea } from "./textarea/Textarea.astro";
 export { default as Select } from "./select/Select.astro";
 export { default as SelectOption } from "./select/SelectOption.astro";
+export { default as SelectGroup } from "./select/SelectGroup.astro";
 export { default as Combobox } from "./combobox/Combobox.astro";
 export { default as ComboboxTrigger } from "./combobox/ComboboxTrigger.astro";
 export { default as ComboboxContent } from "./combobox/ComboboxContent.astro";

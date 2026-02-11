@@ -11,6 +11,7 @@ import ComponentPreview from "@/components/docs/ComponentPreview.astro";
 import CodeBlock from "@/components/docs/CodeBlock.astro";
 import Prose from "@/components/docs/Prose.astro";
 import Select from "@/components/ui/select/Select.astro";
+import SelectGroup from "@/components/ui/select/SelectGroup.astro";
 import SelectOption from "@/components/ui/select/SelectOption.astro";
 import Label from "@/components/ui/label/Label.astro";
 
@@ -108,12 +109,46 @@ import { Select } from "@/components/bearnie/select"
   </Select>
 </ComponentPreview>
 </div>
+
+<div class="space-y-4">
+<Prose>
+#### Grouped options
+</Prose>
+
+<ComponentPreview>
+  <Fragment slot="code">
+```html
+<Select placeholder="Select a domain" class="w-[240px]">
+  <SelectGroup label="Products">
+    <option value="lexingtonthemes.com">lexingtonthemes.com</option>
+    <option value="oxbowui.com">oxbowui.com</option>
+  </SelectGroup>
+  <SelectGroup label="Tools">
+    <option value="colorsandfonts.com">colorsandfonts.com</option>
+    <option value="bearnie.dev">bearnie.dev</option>
+  </SelectGroup>
+</Select>
+```
+  </Fragment>
+  <Select placeholder="Select a domain" class="w-[240px]">
+    <SelectGroup label="Products">
+      <option value="lexingtonthemes.com">lexingtonthemes.com</option>
+      <option value="oxbowui.com">oxbowui.com</option>
+    </SelectGroup>
+    <SelectGroup label="Tools">
+      <option value="colorsandfonts.com">colorsandfonts.com</option>
+      <option value="bearnie.dev">bearnie.dev</option>
+    </SelectGroup>
+  </Select>
+</ComponentPreview>
+</div>
 </div>
 
 <Prose>
 ### Anatomy
 
 - `Select` - The dropdown container with native options
+- `SelectGroup` - Native optgroup wrapper for related options
 </Prose>
 
 <Prose>
