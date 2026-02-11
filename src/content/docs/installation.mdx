@@ -77,6 +77,10 @@ Then add any component:
 </Prose>
 
 <InstallTabs command="add button card dialog" />
+
+<Prose>
+When you add interactive components, Bearnie installs shared runtime helpers under `src/utils/runtime/` automatically. No manual runtime wiring is needed.
+</Prose>
 </div>
 
 <div class="space-y-4">
@@ -160,7 +164,10 @@ src/
 ├── styles/
 │   └── bearnie.css
 └── utils/
-    └── cn.ts
+    ├── cn.ts
+    └── runtime/
+        ├── loader.ts
+        └── ui-boot.ts
 ```
 
 </Prose>

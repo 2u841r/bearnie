@@ -139,7 +139,11 @@ The Bearnie MCP server connects your AI assistant directly to the component regi
 | `get_component` | View source code and dependencies |
 | `add_component` | Add component files to your project |
 
-Components go to `src/components/bearnie/`, utilities to `src/utils/`. If a component needs an npm package, you'll be told what to install.
+Components go to `src/components/bearnie/`, utilities to `src/utils/`.
+
+For interactive components, the MCP flow also adds shared runtime files to `src/utils/runtime/` so behavior works out of the box with no extra setup.
+
+If a component needs an npm package, you'll be told what to install.
 </Prose>
 
 <Prose>
