@@ -73,6 +73,11 @@
       "category": "disclosure"
     },
     {
+      "name": "combobox",
+      "description": "A searchable dropdown for selecting one option",
+      "category": "form"
+    },
+    {
       "name": "command",
       "description": "A command palette for searching and selecting actions",
       "category": "navigation"

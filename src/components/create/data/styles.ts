@@ -3,17 +3,19 @@ export const styleOptions = [
   {
     name: "Bearnie",
     value: "bearnie",
-    description: "Default style. Balanced radius with Inter font.",
+    description: "Balanced and clean. Subtle borders, neutral surfaces, Inter font.",
   },
   {
     name: "Rere",
     value: "rere",
-    description: "Swiss minimalist. Sharp corners, uppercase headings. Geist font.",
+    description:
+      "Swiss editorial. Hard corners, uppercase accents, Geist font.",
   },
   {
     name: "Valentina",
     value: "valentina",
-    description: "Playful & bold. Pill buttons, shadows, larger text. Outfit font.",
+    description:
+      "Playful and soft. Pill buttons, larger spacing, lifted cards, Outfit font.",
   },
 ];
 
@@ -28,10 +30,10 @@ export const styleOptions = [
 // borderWidth: '1px' or '2px' for border thickness
 // uppercase: true for uppercase headings
 // textScale: 'normal' or 'large' for text sizing
-export const stylePresets: Record<string, { 
-  radius: string; 
-  spacing: string; 
-  font: string; 
+export type StylePreset = {
+  radius: string;
+  spacing: string;
+  font: string;
   buttonRadius?: string;
   cardBorder?: boolean;
   cardPadding?: boolean;
@@ -39,7 +41,9 @@ export const stylePresets: Record<string, {
   borderWidth?: string;
   uppercase?: boolean;
   textScale?: string;
-}> = {
+};
+
+export const stylePresets: Record<string, StylePreset> = {
   // Bearnie: Default balanced style
   bearnie: {
     radius: "0.625",
@@ -55,6 +59,8 @@ export const stylePresets: Record<string, {
     font: "geist",
     uppercase: true,
     textScale: "normal",
+    borderWidth: "1px",
+    cardShadow: false,
   },
   // Valentina: Playful & bold with shadows and larger text
   valentina: {

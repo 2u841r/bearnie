@@ -24,6 +24,30 @@ const UTILITY_META: Record<
     description: "Focus trap utility for modal accessibility",
     file: "focus-trap.ts",
   },
+  "ui-runtime-loader": {
+    description: "Loads the shared UI runtime once per page",
+    file: "runtime/loader.ts",
+  },
+  "ui-runtime-boot": {
+    description: "Bootstraps interactive UI component behaviors",
+    file: "runtime/ui-boot.ts",
+  },
+  "ui-runtime-disclosure-triggers": {
+    description: "Shared keyboard trigger handlers for disclosure controls",
+    file: "runtime/disclosure-triggers.ts",
+  },
+  "ui-runtime-popover": {
+    description: "Shared popover initialization runtime",
+    file: "runtime/popover.ts",
+  },
+  "ui-runtime-command": {
+    description: "Shared command and command dialog initialization runtime",
+    file: "runtime/command.ts",
+  },
+  "ui-runtime-combobox": {
+    description: "Shared combobox initialization runtime",
+    file: "runtime/combobox.ts",
+  },
 };
 
 // Component metadata - defines dependencies and categories
@@ -95,7 +119,15 @@ const COMPONENT_META: Record<
   command: {
     description: "A command palette for searching and selecting actions",
     category: "navigation",
-    registryDependencies: ["focus-trap"],
+    registryDependencies: [
+      "focus-trap",
+      "ui-runtime-loader",
+      "ui-runtime-boot",
+      "ui-runtime-disclosure-triggers",
+      "ui-runtime-popover",
+      "ui-runtime-command",
+      "ui-runtime-combobox",
+    ],
   },
   "context-menu": {
     description: "A menu triggered by right-click",
@@ -154,7 +186,15 @@ const COMPONENT_META: Record<
   popover: {
     description: "Displays floating content when triggered",
     category: "disclosure",
-    registryDependencies: ["focus-trap"],
+    registryDependencies: [
+      "focus-trap",
+      "ui-runtime-loader",
+      "ui-runtime-boot",
+      "ui-runtime-disclosure-triggers",
+      "ui-runtime-popover",
+      "ui-runtime-command",
+      "ui-runtime-combobox",
+    ],
   },
   progress: {
     description: "Displays progress of a task",
@@ -171,6 +211,11 @@ const COMPONENT_META: Record<
   select: {
     description: "A dropdown for selecting from a list of options",
     category: "form",
+  },
+  combobox: {
+    description: "A searchable dropdown for selecting one option",
+    category: "form",
+    registryDependencies: ["command", "popover"],
   },
   separator: {
     description: "A visual divider between content",

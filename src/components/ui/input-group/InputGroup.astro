@@ -11,31 +11,25 @@ export interface Props extends HTMLAttributes<"div"> {
   layout?: "inline" | "block";
 }
 
-const {
-  layout = "inline",
-  class: className,
-  ...props
-} = Astro.props;
+const { layout = "inline", class: className, ...props } = Astro.props;
 
 const classes = cn(
   "relative flex min-w-0 rounded-md border border-input bg-background",
   layout === "inline" ? "flex-row items-stretch" : "flex-col",
-  className
+  className,
 );
 ---
 
-<div
-  class={classes}
-  data-input-group
-  data-layout={layout}
-  {...props}
->
+<div class={classes} data-input-group data-layout={layout} {...props}>
   <slot />
 </div>
 
 <style is:global>
   /* Container focus ring when input is focused */
-  [data-input-group]:has([data-slot="input-group-control"]:focus) {
+  [data-input-group]:has([data-slot="input-group-control"]:focus),
+  [data-input-group]:has(
+    [data-popover] [data-slot="input-group-control"]:focus
+  ) {
     box-shadow: 0 0 0 3px oklch(var(--primary) / 0.1);
   }
 
@@ -45,8 +39,22 @@ const classes = cn(
     border-radius: 0;
     box-shadow: none;
   }
+  [data-input-group][data-layout="inline"]
+    > [data-popover]
+    [data-slot="input-group-control"] {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
 
-  [data-input-group][data-layout="inline"] > [data-slot="input-group-control"]:focus {
+  [data-input-group][data-layout="inline"]
+    > [data-slot="input-group-control"]:focus {
+    box-shadow: none;
+    outline: none;
+  }
+  [data-input-group][data-layout="inline"]
+    > [data-popover]
+    [data-slot="input-group-control"]:focus {
     box-shadow: none;
     outline: none;
   }
@@ -64,20 +72,24 @@ const classes = cn(
   }
 
   /* Addon positioning via order */
-  [data-input-group][data-layout="inline"] > [data-input-group-addon][data-align="inline-start"] {
+  [data-input-group][data-layout="inline"]
+    > [data-input-group-addon][data-align="inline-start"] {
     order: -1;
   }
 
-  [data-input-group][data-layout="inline"] > [data-input-group-addon][data-align="inline-end"] {
+  [data-input-group][data-layout="inline"]
+    > [data-input-group-addon][data-align="inline-end"] {
     order: 1;
   }
 
   /* Add separator between addon and input */
-  [data-input-group][data-layout="inline"] > [data-input-group-addon][data-align="inline-start"] {
+  [data-input-group][data-layout="inline"]
+    > [data-input-group-addon][data-align="inline-start"] {
     border-right: 1px solid oklch(var(--border));
   }
 
-  [data-input-group][data-layout="inline"] > [data-input-group-addon][data-align="inline-end"] {
+  [data-input-group][data-layout="inline"]
+    > [data-input-group-addon][data-align="inline-end"] {
     border-left: 1px solid oklch(var(--border));
   }
 
@@ -88,7 +100,8 @@ const classes = cn(
     box-shadow: none;
   }
 
-  [data-input-group][data-layout="block"] > [data-slot="input-group-control"]:focus {
+  [data-input-group][data-layout="block"]
+    > [data-slot="input-group-control"]:focus {
     box-shadow: none;
     outline: none;
   }
@@ -106,12 +119,14 @@ const classes = cn(
   }
 
   /* Addon positioning for block layout */
-  [data-input-group][data-layout="block"] > [data-input-group-addon][data-align="block-start"] {
+  [data-input-group][data-layout="block"]
+    > [data-input-group-addon][data-align="block-start"] {
     order: -1;
     border-bottom: 1px solid oklch(var(--border));
   }
 
-  [data-input-group][data-layout="block"] > [data-input-group-addon][data-align="block-end"] {
+  [data-input-group][data-layout="block"]
+    > [data-input-group-addon][data-align="block-end"] {
     order: 1;
     border-top: 1px solid oklch(var(--border));
   }

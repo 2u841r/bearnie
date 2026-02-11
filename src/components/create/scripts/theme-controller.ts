@@ -21,7 +21,7 @@ const state = {
   cardShadow: false,
   borderWidth: '1px',
   uppercase: false,
-  textScale: 'normal'
+  textScale: 'normal',
 };
 
 // Elements
@@ -97,6 +97,22 @@ function updateChecks(type: string, value: string) {
   });
 }
 
+function applyPresetToState(styleValue: string) {
+  const preset = stylePresets[styleValue];
+  if (!preset) return;
+
+  state.radius = preset.radius;
+  state.spacing = preset.spacing;
+  state.font = preset.font;
+  state.buttonRadius = preset.buttonRadius || '';
+  state.cardBorder = preset.cardBorder !== false;
+  state.cardPadding = preset.cardPadding !== false;
+  state.cardShadow = preset.cardShadow === true;
+  state.borderWidth = preset.borderWidth || '1px';
+  state.uppercase = preset.uppercase === true;
+  state.textScale = preset.textScale || 'normal';
+}
+
 // Update theme
 function updateTheme() {
   const root = document.documentElement;
@@ -110,6 +126,12 @@ function updateTheme() {
   const base = baseColorValues[state.baseColor]?.[mode] || baseColorValues.neutral[mode];
   const primary = primaryColorValues[state.primaryColor] || primaryColorValues.neutral;
   const fontFamily = fontFamilies[state.font] || fontFamilies.inter;
+  const cardPaddingValue = state.cardPadding ? '1.5rem' : '0';
+  const cardShadowValue = state.cardShadow
+    ? (isDark
+      ? '0 2px 8px rgba(0, 0, 0, 0.24)'
+      : '0 2px 8px rgba(16, 24, 40, 0.06)')
+    : 'none';
 
   // Apply theme to each preview element
   previewElements.forEach(target => {
@@ -151,10 +173,10 @@ function updateTheme() {
     el.style.setProperty('--card-border', state.cardBorder ? state.borderWidth : '0px');
     
     // Card padding (for minimal styles like rere)
-    el.style.setProperty('--card-padding', state.cardPadding ? '1.5rem' : '0');
+    el.style.setProperty('--card-padding', cardPaddingValue);
 
     // Card shadow (for soft styles like monana-nui and valentina)
-    el.style.setProperty('--card-shadow', state.cardShadow ? '0 2px 8px rgba(0, 0, 0, 0.04)' : 'none');
+    el.style.setProperty('--card-shadow', cardShadowValue);
 
     // Text transform (for swiss style like rere)
     el.style.setProperty('--heading-transform', state.uppercase ? 'uppercase' : 'none');
@@ -170,6 +192,7 @@ function updateTheme() {
     // Font
     el.style.setProperty('--font-sans', fontFamily);
     el.style.fontFamily = `var(--font-sans)`;
+
   });
 
   updateUrl();
@@ -295,15 +318,6 @@ function showToast(message: string) {
   }
 }
 
-async function copyToClipboard(text: string, message: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast(message);
-  } catch (err) {
-    console.error('Failed to copy:', err);
-  }
-}
-
 // Generate CSS
 function generateCSS(): string {
   const base = baseColorValues[state.baseColor] || baseColorValues.neutral;
@@ -375,17 +389,8 @@ document.addEventListener('click', (e) => {
     // Apply preset values
     const preset = stylePresets[value];
     if (preset) {
-      state.radius = preset.radius;
-      state.spacing = preset.spacing;
-      state.font = preset.font;
-      state.buttonRadius = preset.buttonRadius || '';
-      state.cardBorder = preset.cardBorder !== false;
-      state.cardPadding = preset.cardPadding !== false;
-      state.cardShadow = preset.cardShadow === true;
-      state.borderWidth = preset.borderWidth || '1px';
-      state.uppercase = preset.uppercase === true;
-      state.textScale = preset.textScale || 'normal';
-      
+      applyPresetToState(value);
+
       // Update individual labels
       if (radiusLabel) radiusLabel.textContent = radiusNames[preset.radius] || 'Medium';
       if (fontLabel) {
@@ -582,6 +587,9 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   if (params.toString()) {
     const decoded = paramsToState(params);
+    if (decoded.style && stylePresets[decoded.style]) {
+      applyPresetToState(decoded.style);
+    }
     Object.assign(state, decoded);
     
     // Update style label and icon

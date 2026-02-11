@@ -13,6 +13,7 @@ export const REGISTRY_INDEX_URL = `${REGISTRY_URL}/index.json`;
 
 export interface RegistryComponent {
   name: string;
+  type?: "component" | "utility";
   description: string;
   category: string;
   dependencies?: string[];

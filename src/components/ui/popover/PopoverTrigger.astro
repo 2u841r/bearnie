@@ -19,21 +19,7 @@ const { class: className, ...props } = Astro.props;
 </span>
 
 <script>
-  function initPopoverTriggers() {
-    document.querySelectorAll('[data-popover-trigger]').forEach((trigger) => {
-      if (trigger.hasAttribute('data-trigger-initialized')) return;
-      trigger.setAttribute('data-trigger-initialized', 'true');
+  import { ensureUiBootLoaded } from "@/utils/runtime/loader";
 
-      trigger.addEventListener('keydown', (e) => {
-        const event = e as KeyboardEvent;
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        }
-      });
-    });
-  }
-
-  initPopoverTriggers();
-  document.addEventListener('astro:page-load', initPopoverTriggers);
+  ensureUiBootLoaded();
 </script>

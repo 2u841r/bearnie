@@ -7,14 +7,11 @@ import { execa } from "execa";
 import {
   getProjectConfig,
   DEFAULT_CONFIG,
-  CONFIG_FILE,
-  type ProjectConfig,
 } from "../utils/config.js";
 import {
   getRegistryIndex,
   getComponent,
   resolveComponentDependencies,
-  type RegistryComponent,
 } from "../utils/registry.js";
 import { brand, messages, print } from "../utils/ui.js";
 
@@ -67,7 +64,7 @@ export async function add(components: string[], options: AddOptions) {
   try {
     registryIndex = await getRegistryIndex();
     indexSpinner.succeed(messages.foundComponents(registryIndex.components.length));
-  } catch (error) {
+  } catch {
     indexSpinner.fail(messages.networkError());
     print.hint(messages.networkErrorHelp());
     process.exit(1);
@@ -135,7 +132,7 @@ export async function add(components: string[], options: AddOptions) {
         `Adding ${chalk.bold(allComponents.length)} component${allComponents.length > 1 ? "s" : ""}`
       );
     }
-  } catch (error) {
+  } catch {
     resolveSpinner.fail("Couldn't resolve dependencies");
     process.exit(1);
   }
@@ -164,7 +161,13 @@ export async function add(components: string[], options: AddOptions) {
 
       // Write files
       for (const file of component.files) {
-        const filePath = path.join(cwd, config.componentsDir, file.path);
+        const isUtilityFile =
+          component.type === "utility" || file.path.startsWith("utils/");
+        const relativePath = isUtilityFile
+          ? file.path.replace(/^utils\//, "")
+          : file.path;
+        const baseDir = isUtilityFile ? config.utilsDir : config.componentsDir;
+        const filePath = path.join(cwd, baseDir, relativePath);
         const exists = await fs.pathExists(filePath);
 
         if (exists && !options.yes) {
@@ -214,7 +217,7 @@ export async function add(components: string[], options: AddOptions) {
       }
 
       depsSpinner.succeed("Dependencies installed");
-    } catch (error) {
+    } catch {
       depsSpinner.fail("Some dependencies couldn't be installed");
       print.hint("You might need to install them manually.");
     }

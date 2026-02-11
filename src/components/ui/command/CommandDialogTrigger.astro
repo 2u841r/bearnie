@@ -23,21 +23,7 @@ const classes = cn(
 </span>
 
 <script>
-  function initCommandDialogTriggers() {
-    document.querySelectorAll('[data-command-dialog-trigger]').forEach((trigger) => {
-      if (trigger.hasAttribute('data-trigger-initialized')) return;
-      trigger.setAttribute('data-trigger-initialized', 'true');
+  import { ensureUiBootLoaded } from "@/utils/runtime/loader";
 
-      trigger.addEventListener('keydown', (e) => {
-        const event = e as KeyboardEvent;
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        }
-      });
-    });
-  }
-
-  initCommandDialogTriggers();
-  document.addEventListener('astro:page-load', initCommandDialogTriggers);
+  ensureUiBootLoaded();
 </script>
